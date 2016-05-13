@@ -63,13 +63,10 @@ bool TitleScene::init()
     
     this->character  = this->background->getChildByName<Character*>("character");
     this->character->setLocalZOrder(1);
-    //this->character->flyTillDeath();
+    this->character->flyTillDeath();
     
     this->ground = this->background->getChildByName<Ground*>("ground");
     this->ground->setLocalZOrder(1);
-    
-    
-    
     
     auto playButton = this->background->getChildByName<ui::Button*>("playButton");
     float moveDistance = 5;
@@ -114,7 +111,6 @@ bool TitleScene::init()
         
     });
     
-    
     auto rankingButton = this->background->getChildByName<ui::Button*>("rankingButton");
     rankingButton->addTouchEventListener([this, rankingButton, moveDistance](Ref* sender, ui::Widget::TouchEventType type) {
         
@@ -131,8 +127,6 @@ bool TitleScene::init()
         }
     });
 
-
-    
     addChild(rootNode);
     
     return true;
