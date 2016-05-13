@@ -37,6 +37,7 @@ private:
     State state;
     cocos2d::ui::TextBMFont* scoreLabel;
     int score;
+    cocostudio::timeline::ActionTimeline* timeline;
     
     void setupTouchHandling();
     void createObstacle(float dt);
