@@ -16,10 +16,13 @@
 #include "Ground.h"
 #include "GroundReader.h"
 
+#include "SimpleAudioEngine.h"
+
+
 USING_NS_CC;
 
 using namespace cocostudio::timeline;
-
+using namespace CocosDenshion;
 
 Scene* TitleScene::createScene()
 {
@@ -43,6 +46,9 @@ bool TitleScene::init()
     {
         return false;
     }
+    
+    SimpleAudioEngine::getInstance()->preloadEffect("sfx_swooshing.mp3");
+    SimpleAudioEngine::getInstance()->setEffectsVolume(SOUND_VOLUME);
     
     CSLoader* instance = CSLoader::getInstance();
     instance->registReaderObject("CharacterReader", (ObjectFactory::Instance) CharacterReader::getInstance);
@@ -78,6 +84,8 @@ bool TitleScene::init()
                 break;
             case ui::Widget::TouchEventType::ENDED:
                 playButton->setPositionY(playButton->getPositionY() + moveDistance);
+                // 効果音を再生
+                SimpleAudioEngine::getInstance()->playEffect("sfx_swooshing.mp3");
                 // ボタンがタップされたときの処理を実装する
                 auto nextGameScene = MainScene::createScene();
                 auto transition = TransitionFade::create(1.0f, nextGameScene);
