@@ -95,6 +95,44 @@ bool TitleScene::init()
         
     });
     
+    auto rateButton = this->background->getChildByName<ui::Button*>("rateButton");
+    rateButton->addTouchEventListener([this, rateButton, moveDistance](Ref* sender, ui::Widget::TouchEventType type) {
+        
+        switch(type) {
+            case ui::Widget::TouchEventType::BEGAN:
+                rateButton->setPositionY(rateButton->getPositionY() - moveDistance);
+                break;
+            case ui::Widget::TouchEventType::CANCELED:
+                rateButton->setPositionY(rateButton->getPositionY() + moveDistance);
+                break;
+            case ui::Widget::TouchEventType::ENDED:
+                rateButton->setPositionY(rateButton->getPositionY() + moveDistance);
+                break;
+        }
+        
+        
+        
+    });
+    
+    
+    auto rankingButton = this->background->getChildByName<ui::Button*>("rankingButton");
+    rankingButton->addTouchEventListener([this, rankingButton, moveDistance](Ref* sender, ui::Widget::TouchEventType type) {
+        
+        switch(type) {
+            case ui::Widget::TouchEventType::BEGAN:
+                rankingButton->setPositionY(rankingButton->getPositionY() - moveDistance);
+                break;
+            case ui::Widget::TouchEventType::CANCELED:
+                rankingButton->setPositionY(rankingButton->getPositionY() + moveDistance);
+                break;
+            case ui::Widget::TouchEventType::ENDED:
+                rankingButton->setPositionY(rankingButton->getPositionY() + moveDistance);
+                break;
+        }
+    });
+
+
+    
     addChild(rootNode);
     
     return true;
