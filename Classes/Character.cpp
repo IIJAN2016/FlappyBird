@@ -8,6 +8,7 @@
 
 #include "Character.h"
 #include "Constants.h"
+#include <math.h>
 using namespace cocos2d;
 
 bool Character::init() {
@@ -34,6 +35,17 @@ void Character::update(float dt){
     if (isFlying) {
         this->velocity += accel * dt;
         this->setPosition(this->getPosition() + Vec2(0, this->velocity * dt));
+
+        float degree = MATH_RAD_TO_DEG(atan2f(SCROLL_SPEED_X, this->velocity)) - 90;
+        if (degree < ROTATION_THRESHOLD_DEGREE) {
+            this->setRotation(ROTATION_MIN_DEGREE);
+        }else{
+            float rate = (ROTATION_MAX_DEGREE - ROTATION_MIN_DEGREE) / ROTATION_RATE;
+            degree = ROTATION_MIN_DEGREE + (degree - ROTATION_THRESHOLD_DEGREE) * rate;
+            degree = clampf(degree, ROTATION_MIN_DEGREE, ROTATION_MAX_DEGREE);
+            CCLOG("%f", degree);
+            this->setRotation(degree);
+        }
     }
 }
 
