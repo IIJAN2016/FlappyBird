@@ -51,6 +51,8 @@
 		52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
 		67264650BD08F5A9E8B7ED1D /* libcocos2d iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D65417CAF89D7ADE4119FEC /* libcocos2d iOS.a */; };
 		6CC743B7AEC6C4A1F5FEC304 /* res in Resources */ = {isa = PBXBuildFile; fileRef = 01F741B993AED8B544209AD5 /* res */; };
+		70528E9C1CE5B7BB00866BDD /* MedalBoard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70528E9A1CE5B7BB00866BDD /* MedalBoard.cpp */; };
+		70528E9F1CE5C22A00866BDD /* MedalReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70528E9D1CE5C22A00866BDD /* MedalReader.cpp */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
 		9F0815651CE4120B0020DD57 /* Obstacle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F0815611CE4120B0020DD57 /* Obstacle.cpp */; };
 		9F0815661CE4120B0020DD57 /* ObstacleReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F0815631CE4120B0020DD57 /* ObstacleReader.cpp */; };
@@ -117,6 +119,10 @@
 		521A8E6319F0C34300D177D7 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		5D65417CAF89D7ADE4119FEC /* libcocos2d iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libcocos2d iOS.a"; path = "/Applications/Cocos/Cocos2d-x/cocos2d-x-3.10/prebuilt/ios/libcocos2d iOS.a"; sourceTree = "<absolute>"; };
+		70528E9A1CE5B7BB00866BDD /* MedalBoard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedalBoard.cpp; sourceTree = "<group>"; };
+		70528E9B1CE5B7BB00866BDD /* MedalBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedalBoard.h; sourceTree = "<group>"; };
+		70528E9D1CE5C22A00866BDD /* MedalReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MedalReader.cpp; sourceTree = "<group>"; };
+		70528E9E1CE5C22A00866BDD /* MedalReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedalReader.h; sourceTree = "<group>"; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9F0815601CE40ED30020DD57 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		9F0815611CE4120B0020DD57 /* Obstacle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Obstacle.cpp; sourceTree = "<group>"; };
@@ -273,12 +279,16 @@
 				9F0815601CE40ED30020DD57 /* Constants.h */,
 				9F0815611CE4120B0020DD57 /* Obstacle.cpp */,
 				9F0815621CE4120B0020DD57 /* Obstacle.h */,
-				9F0815631CE4120B0020DD57 /* ObstacleReader.cpp */,
-				9F0815641CE4120B0020DD57 /* ObstacleReader.h */,
 				9F0815671CE55FFC0020DD57 /* Ground.cpp */,
 				9F0815681CE55FFC0020DD57 /* Ground.h */,
 				9F0815691CE55FFC0020DD57 /* GroundReader.cpp */,
 				9F08156A1CE55FFC0020DD57 /* GroundReader.h */,
+				70528E9A1CE5B7BB00866BDD /* MedalBoard.cpp */,
+				70528E9B1CE5B7BB00866BDD /* MedalBoard.h */,
+				9F0815631CE4120B0020DD57 /* ObstacleReader.cpp */,
+				9F0815641CE4120B0020DD57 /* ObstacleReader.h */,
+				70528E9D1CE5C22A00866BDD /* MedalReader.cpp */,
+				70528E9E1CE5C22A00866BDD /* MedalReader.h */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -456,9 +466,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FBCAB281CE332BD001CA4FA /* CharacterReader.cpp in Sources */,
+				70528E9C1CE5B7BB00866BDD /* MedalBoard.cpp in Sources */,
 				9F0815661CE4120B0020DD57 /* ObstacleReader.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				9F0815651CE4120B0020DD57 /* Obstacle.cpp in Sources */,
+				70528E9F1CE5C22A00866BDD /* MedalReader.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* MainScene.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				9FBCAB271CE332BD001CA4FA /* Character.cpp in Sources */,
