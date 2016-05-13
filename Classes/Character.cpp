@@ -8,12 +8,18 @@
 
 #include "Character.h"
 #include "Constants.h"
+#include "SimpleAudioEngine.h"
+
 using namespace cocos2d;
+using namespace CocosDenshion;
 
 bool Character::init() {
     if (!Node::init()) {
         return false;
     }
+    
+    SimpleAudioEngine::getInstance()->preloadEffect("sfx_wing.mp3");
+    SimpleAudioEngine::getInstance()->setEffectsVolume(SOUND_VOLUME);
 
     this->timeline = CSLoader::createTimeline("Character.csb");
     this->timeline->retain();
@@ -43,6 +49,10 @@ void Character::jump(){
     this->stopAllActions();
     this->runAction(this->timeline);
     this->timeline->play("fly", false);
+    
+    // 効果音を再生
+    SimpleAudioEngine::getInstance()->playEffect("sfx_wing.mp3");
+
 }
 
 Rect Character::getRect()
