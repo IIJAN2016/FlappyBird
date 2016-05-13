@@ -7,6 +7,7 @@
 #include "Constants.h"
 #include "Ground.h"
 #include "GroundReader.h"
+#include "HighScoreManager.hpp"
 
 USING_NS_CC;
 
@@ -206,6 +207,10 @@ void MainScene::triggerGameOver()
     this->stopAllActions();
     this->runAction(this->timeline);
     this->timeline->play("gameover", false);
+    
+    HighScoreManager* highScoreManager = new HighScoreManager();
+    highScoreManager->registerCurrentScore(this->score);
+    delete highScoreManager;
 }
 
 void MainScene::setScore(int score)
