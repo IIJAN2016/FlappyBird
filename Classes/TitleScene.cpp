@@ -57,10 +57,12 @@ bool TitleScene::init()
     
     this->character  = this->background->getChildByName<Character*>("character");
     this->character->setLocalZOrder(1);
-    this->character->wait();
+    //this->character->flyTillDeath();
     
     this->ground = this->background->getChildByName<Ground*>("ground");
     this->ground->setLocalZOrder(1);
+    
+    
     
     
     auto playButton = this->background->getChildByName<ui::Button*>("playButton");
