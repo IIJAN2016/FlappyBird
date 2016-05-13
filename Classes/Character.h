@@ -25,6 +25,7 @@ public:
     
     void startFly();
     void stopFly();
+    void flyTillDeath();
 
 protected:
     cocostudio::timeline::ActionTimeline* timeline;
