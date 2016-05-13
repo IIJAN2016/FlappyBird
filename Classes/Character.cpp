@@ -81,3 +81,9 @@ void Character::setBottomY(float y)
 {
     this->setPositionY(y + this->getRect().size.height / 2);
 }
+
+void Character::flyTillDeath() {
+    this->stopAllActions();
+    this->runAction(this->timeline);
+    this->timeline->play("flyTillDeath", true);
+}

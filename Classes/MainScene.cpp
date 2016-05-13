@@ -10,6 +10,9 @@
 #include "HighScoreManager.hpp"
 #include "SimpleAudioEngine.h"
 
+#include "MedalBoard.h"
+#include "MedalReader.h"
+
 USING_NS_CC;
 
 using namespace cocostudio::timeline;
@@ -48,6 +51,9 @@ bool MainScene::init()
     instance->registReaderObject("CharacterReader", (ObjectFactory::Instance) CharacterReader::getInstance);
     instance->registReaderObject("ObstacleReader", (ObjectFactory::Instance) ObstacleReader::getInstance);
     instance->registReaderObject("GroundReader", (ObjectFactory::Instance) GroundReader::getInstance);
+    // --- medal ---
+    instance->registReaderObject("MedalReader", (ObjectFactory::Instance) MedalReader::getInstance);
+    // --- ---
     
     auto rootNode = CSLoader::createNode("MainScene.csb");
     Size size = Director::getInstance()->getVisibleSize();
@@ -55,12 +61,15 @@ bool MainScene::init()
     ui::Helper::doLayout(rootNode);
     
     this->background = rootNode->getChildByName("back");
+    this->background2 = background->getChildByName("back2");
     this->character  = this->background->getChildByName<Character*>("character");
     this->character->setLocalZOrder(1);
     this->ground = this->background->getChildByName<Ground*>("ground");
     this->ground->setLocalZOrder(1);
     this->scoreLabel = this->background->getChildByName<ui::TextBMFont*>("scoreLabel");
     this->scoreLabel->setLocalZOrder(1);
+    this->getReady = this->background->getChildByName<Node*>("getReady");
+    this->getReady->setLocalZOrder(1);
     
     auto gameover = this->background->getChildByName("logo_game_over");
     gameover->setLocalZOrder(1);
@@ -68,6 +77,16 @@ bool MainScene::init()
     this->timeline = CSLoader::createTimeline("MainScene.csb");
     this->timeline->retain();
 
+    Obstacle* obstacle = dynamic_cast<Obstacle*>(CSLoader::createNode("Obstacle.csb"));
+    this->obstacles.pushBack(obstacle);
+    this->background->addChild(obstacle);
+    
+    // --- medal ---
+    this->medalboard = dynamic_cast<MedalBoard*>(CSLoader::createNode("Medal.csb"));
+    this->medalboard->setLocalZOrder(3);
+    this->background->addChild(this->medalboard);
+    // --- ---
+    
     addChild(rootNode);
 
     return true;
@@ -198,8 +217,25 @@ void MainScene::createObstacle(float dt)
 void MainScene::triggerReady()
 {
     this->state = State::Ready;
+    if (CCRANDOM_0_1() >= 0.5)
+        this->background2->setVisible(true);
+    else
+        this->background2->setVisible(false);
+    
+    this->character->getChildByName("bird")->setVisible(false);
+    this->character->getChildByName("birdBlue")->setVisible(false);
+    this->character->getChildByName("birdRed")->setVisible(false);
+    if (CCRANDOM_0_1() <= 1.0/3.0)
+        this->character->getChildByName("bird")->setVisible(true);
+    else if (CCRANDOM_0_1() <= 2.0/3.0)
+        this->character->getChildByName("birdBlue")->setVisible(true);
+    else
+        this->character->getChildByName("birdRed")->setVisible(true);
     this->character->stopFly();
+    this->character->flyTillDeath();
     this->setScore(0);
+    this->getReady->setVisible(true);
+    
 }
 
 void MainScene::triggerPlaying()
@@ -207,10 +243,16 @@ void MainScene::triggerPlaying()
     this->state = State::Playing;
     this->character->startFly();
     this->schedule(CC_SCHEDULE_SELECTOR(MainScene::createObstacle), OBSTACLE_TIME_SPAN);
+    auto action = FadeOut::create(0.5);
+    this->getReady->runAction(action);
 }
 
 void MainScene::triggerGameOver()
 {
+    // --- medal ---
+    this->medalboard->displayMedalByScore(this->score);
+    // --- ---
+    
     this->state = State::GameOver;
     this->unschedule(CC_SCHEDULE_SELECTOR(MainScene::createObstacle));
     
