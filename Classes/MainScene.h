@@ -34,9 +34,12 @@ private:
     MedalBoard* medalboard;
     cocos2d::Vector<Obstacle*> obstacles;
     cocos2d::Node* background;
+    cocos2d::Node* background2;
+    cocos2d::Node* getReady;
     State state;
     cocos2d::ui::TextBMFont* scoreLabel;
     int score;
+    cocostudio::timeline::ActionTimeline* timeline;
     
     void setupTouchHandling();
     void createObstacle(float dt);
