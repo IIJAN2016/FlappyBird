@@ -22,6 +22,9 @@ bool Character::init() {
     this->accel    = GRAVITY_ACCEL;
     this->isFlying = false;
 
+    this->degreeSpeed = 0;
+    this->degree = 0;
+
     return true;
 }
 
@@ -36,15 +39,12 @@ void Character::update(float dt){
         this->velocity += accel * dt;
         this->setPosition(this->getPosition() + Vec2(0, this->velocity * dt));
 
-        float degree = MATH_RAD_TO_DEG(atan2f(SCROLL_SPEED_X, this->velocity)) - 90;
-        if (degree < ROTATION_THRESHOLD_DEGREE) {
+        if (this->velocity > ROTATION_THRESHOLD_VELOCITY) {
             this->setRotation(ROTATION_MIN_DEGREE);
         }else{
-            float rate = (ROTATION_MAX_DEGREE - ROTATION_MIN_DEGREE) / ROTATION_RATE;
-            degree = ROTATION_MIN_DEGREE + (degree - ROTATION_THRESHOLD_DEGREE) * rate;
-            degree = clampf(degree, ROTATION_MIN_DEGREE, ROTATION_MAX_DEGREE);
-            CCLOG("%f", degree);
-            this->setRotation(degree);
+            this->degreeSpeed += ROTATION_DEGREE_ACCEL * dt;
+            this->degree += degreeSpeed * dt;
+            this->setRotation(MIN(degree, ROTATION_MAX_DEGREE));
         }
     }
 }
@@ -55,6 +55,9 @@ void Character::jump(){
     this->stopAllActions();
     this->runAction(this->timeline);
     this->timeline->play("fly", false);
+
+    this->degree = ROTATION_MIN_DEGREE;
+    this->degreeSpeed = 0;
 }
 
 Rect Character::getRect()
