@@ -7,6 +7,7 @@
 #include "Constants.h"
 #include "Ground.h"
 #include "GroundReader.h"
+#include "HighScoreManager.hpp"
 
 USING_NS_CC;
 
@@ -52,6 +53,12 @@ bool MainScene::init()
     this->ground->setLocalZOrder(1);
     this->scoreLabel = this->background->getChildByName<ui::TextBMFont*>("scoreLabel");
     this->scoreLabel->setLocalZOrder(1);
+    
+    auto gameover = this->background->getChildByName("logo_game_over");
+    gameover->setLocalZOrder(1);
+    
+    this->timeline = CSLoader::createTimeline("MainScene.csb");
+    this->timeline->retain();
 
     addChild(rootNode);
 
@@ -196,6 +203,14 @@ void MainScene::triggerGameOver()
 {
     this->state = State::GameOver;
     this->unschedule(CC_SCHEDULE_SELECTOR(MainScene::createObstacle));
+    
+    this->stopAllActions();
+    this->runAction(this->timeline);
+    this->timeline->play("gameover", false);
+    
+    HighScoreManager* highScoreManager = new HighScoreManager();
+    highScoreManager->registerCurrentScore(this->score);
+    delete highScoreManager;
 }
 
 void MainScene::setScore(int score)

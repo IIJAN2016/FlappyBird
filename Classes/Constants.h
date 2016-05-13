@@ -18,11 +18,6 @@ static const float OBSTACLE_MAX_Y     = 400.0f;
 static const float OBSTACLE_TIME_SPAN = 1.35f;
 static const int   OBSTACLE_LIMIT     = 5;
 static const float SOUND_VOLUME       = 0.5f;
-
-static const std::string SOUND_SWOOSHING = "sfx_swooshing.mp3";
-static const std::string SOUND_DIE = "sfx_die.mp3";
-static const std::string SOUND_HIT = "sfx_hit.mp3";
-static const std::string SOUND_POINT = "sfx_point.mp3";
-static const std::string SOUND_WING = "sfx_wing.mp3";
+static const std::string KEY_HIGHSCORE = "highScore";
 
 #endif /* Constants_h */
