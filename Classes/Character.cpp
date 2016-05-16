@@ -8,18 +8,28 @@
 
 #include "Character.h"
 #include "Constants.h"
+#include "SimpleAudioEngine.h"
+#include <math.h>
+
 using namespace cocos2d;
+using namespace CocosDenshion;
 
 bool Character::init() {
     if (!Node::init()) {
         return false;
     }
+    
+    SimpleAudioEngine::getInstance()->preloadEffect("sfx_wing.mp3");
+    SimpleAudioEngine::getInstance()->setEffectsVolume(SOUND_VOLUME);
 
     this->timeline = CSLoader::createTimeline("Character.csb");
     this->timeline->retain();
     this->velocity = 0;
     this->accel    = GRAVITY_ACCEL;
     this->isFlying = false;
+
+    this->degreeSpeed = 0;
+    this->degree = 0;
 
     return true;
 }
@@ -34,6 +44,14 @@ void Character::update(float dt){
     if (isFlying) {
         this->velocity += accel * dt;
         this->setPosition(this->getPosition() + Vec2(0, this->velocity * dt));
+
+        if (this->velocity > ROTATION_THRESHOLD_VELOCITY) {
+            this->setRotation(ROTATION_MIN_DEGREE);
+        }else{
+            this->degreeSpeed += ROTATION_DEGREE_ACCEL * dt;
+            this->degree += degreeSpeed * dt;
+            this->setRotation(MIN(degree, ROTATION_MAX_DEGREE));
+        }
     }
 }
 
@@ -43,6 +61,12 @@ void Character::jump(){
     this->stopAllActions();
     this->runAction(this->timeline);
     this->timeline->play("fly", false);
+    
+    // 効果音を再生
+    SimpleAudioEngine::getInstance()->playEffect("sfx_wing.mp3");
+
+    this->degree = ROTATION_MIN_DEGREE;
+    this->degreeSpeed = 0;
 }
 
 Rect Character::getRect()
