@@ -17,11 +17,14 @@ public:
     CREATE_FUNC(MedalBoard);
     bool init() override;
     void displayMedalByScore(int score);
+    void animateMedal(float dt);
+    
     
 protected:
     //cocos2d::Sprite* medal;
     cocostudio::timeline::ActionTimeline* timeline;
-    
+    Node* effect;
+    cocos2d::Vec2 makeRandPoint();
     
 };
 
