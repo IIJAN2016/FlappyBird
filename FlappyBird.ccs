@@ -41,7 +41,11 @@
             <Image Name="metal_silver.png" />
           </Folder>
           <Folder Name="sounds">
+            <Audio Name="sfx_die.mp3" />
+            <Audio Name="sfx_hit.mp3" />
+            <Audio Name="sfx_point.mp3" />
             <Audio Name="sfx_swooshing.mp3" />
+            <Audio Name="sfx_wing.mp3" />
           </Folder>
           <Folder Name="stage">
             <Image Name="ground.png" />
@@ -74,6 +78,7 @@
         <Project Name="MainScene.csd" Type="Scene" />
         <Project Name="Obstacle.csd" Type="Node" />
         <Image Name="screen_shot.png" />
+        <Project Name="TitleScene.csd" Type="Scene" />
         <Project Name="GetReady.csd" Type="Node" />
       </RootFolder>
     </Group>

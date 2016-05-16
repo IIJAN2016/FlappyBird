@@ -8,6 +8,7 @@
 #include "Ground.h"
 #include "GroundReader.h"
 #include "HighScoreManager.hpp"
+#include "SimpleAudioEngine.h"
 
 #include "MedalBoard.h"
 #include "MedalReader.h"
@@ -15,6 +16,7 @@
 USING_NS_CC;
 
 using namespace cocostudio::timeline;
+using namespace CocosDenshion;
 
 Scene* MainScene::createScene()
 {
@@ -38,7 +40,13 @@ bool MainScene::init()
     {
         return false;
     }
-
+    
+    SimpleAudioEngine::getInstance()->preloadEffect("sfx_swooshing.mp3");
+    SimpleAudioEngine::getInstance()->preloadEffect("sfx_die.mp3");
+    SimpleAudioEngine::getInstance()->preloadEffect("sfx_hit.mp3");
+    SimpleAudioEngine::getInstance()->preloadEffect("sfx_point.mp3");
+    SimpleAudioEngine::getInstance()->setEffectsVolume(SOUND_VOLUME);
+    
     CSLoader* instance = CSLoader::getInstance();
     instance->registReaderObject("CharacterReader", (ObjectFactory::Instance) CharacterReader::getInstance);
     instance->registReaderObject("ObstacleReader", (ObjectFactory::Instance) ObstacleReader::getInstance);
@@ -148,6 +156,8 @@ void MainScene::updatePlaying(float dt)
         if (lastX < this->character->getPositionX()
         && this->character->getPositionX() <= currentX) {
             this->setScore(this->score + 1);
+            // 効果音を再生
+            SimpleAudioEngine::getInstance()->playEffect("sfx_point.mp3");
         }
     }
 
@@ -245,6 +255,10 @@ void MainScene::triggerGameOver()
     this->stopAllActions();
     this->runAction(this->timeline);
     this->timeline->play("gameover", false);
+    
+    // 効果音を再生
+    SimpleAudioEngine::getInstance()->playEffect("sfx_hit.mp3");
+    SimpleAudioEngine::getInstance()->playEffect("sfx_die.mp3");
     
     HighScoreManager* highScoreManager = new HighScoreManager();
     highScoreManager->registerCurrentScore(this->score);

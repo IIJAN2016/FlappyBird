@@ -1,5 +1,5 @@
 #include "AppDelegate.h"
-#include "MainScene.h"
+#include "TitleScene.hpp"
 
 USING_NS_CC;
 
@@ -40,9 +40,10 @@ bool AppDelegate::applicationDidFinishLaunching() {
     director->setAnimationInterval(1.0 / 60);
 
     FileUtils::getInstance()->addSearchPath("res");
+    FileUtils::getInstance()->addSearchPath("res/Assets/sounds");
 
     // create a scene. it's an autorelease object
-    auto scene = MainScene::createScene();
+    auto scene = TitleScene::createScene();
 
     // run
     director->runWithScene(scene);
