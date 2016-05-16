@@ -49,7 +49,7 @@
       </Animation>
       <AnimationList>
         <AnimationInfo Name="effect" StartIndex="1" EndIndex="21">
-          <RenderColor A="150" R="34" G="139" B="34" />
+          <RenderColor A="255" R="34" G="139" B="34" />
         </AnimationInfo>
       </AnimationList>
       <ObjectData Name="Node" CustomClassName="Medal" Tag="14" ctype="GameNodeObjectData">
@@ -102,6 +102,16 @@
                 <FileData Type="Normal" Path="Assets/medal/metal_platium.png" Plist="" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
+              <AbstractNodeData Name="scoreLabel" ActionTag="-1715632752" VisibleForFrame="False" Tag="12" IconVisible="False" LeftMargin="150.0000" RightMargin="27.0000" TopMargin="3.0000" BottomMargin="69.0000" LabelText="1000" ctype="TextBMFontObjectData">
+                <Size X="61.0000" Y="54.0000" />
+                <AnchorPoint ScaleX="1.0000" />
+                <Position X="211.0000" Y="69.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.8866" Y="0.5476" />
+                <PreSize X="0.2563" Y="0.4286" />
+                <LabelBMFontFile_CNB Type="Normal" Path="Assets/font/font2.fnt" Plist="" />
+              </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="1.0000" />
             <Position />
@@ -116,7 +126,7 @@
             <Size X="6.0000" Y="6.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="-65.0000" Y="-65.0000" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <Scale ScaleX="0.0100" ScaleY="0.0100" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
