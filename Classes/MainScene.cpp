@@ -51,9 +51,7 @@ bool MainScene::init()
     instance->registReaderObject("CharacterReader", (ObjectFactory::Instance) CharacterReader::getInstance);
     instance->registReaderObject("ObstacleReader", (ObjectFactory::Instance) ObstacleReader::getInstance);
     instance->registReaderObject("GroundReader", (ObjectFactory::Instance) GroundReader::getInstance);
-    // --- medal ---
     instance->registReaderObject("MedalReader", (ObjectFactory::Instance) MedalReader::getInstance);
-    // --- ---
     
     auto rootNode = CSLoader::createNode("MainScene.csb");
     Size size = Director::getInstance()->getVisibleSize();
@@ -77,11 +75,9 @@ bool MainScene::init()
     this->timeline = CSLoader::createTimeline("MainScene.csb");
     this->timeline->retain();
     
-    // --- medal ---
     this->medalboard = dynamic_cast<MedalBoard*>(CSLoader::createNode("Medal.csb"));
     this->medalboard->setLocalZOrder(3);
     this->background->addChild(this->medalboard);
-    // --- ---
     
     addChild(rootNode);
 
@@ -184,9 +180,6 @@ void MainScene::setupTouchHandling()
             this->character->jump();
             break;
          case State::GameOver:
-            auto nextGameScene = MainScene::createScene();
-            auto transition = TransitionFade::create(1.0f, nextGameScene);
-            Director::getInstance()->replaceScene(transition);
             break;
          }
         
@@ -245,9 +238,6 @@ void MainScene::triggerPlaying()
 
 void MainScene::triggerGameOver()
 {
-    // --- medal ---
-    this->medalboard->displayMedalByScore(this->score);
-    // --- ---
     
     this->state = State::GameOver;
     this->unschedule(CC_SCHEDULE_SELECTOR(MainScene::createObstacle));
@@ -261,7 +251,9 @@ void MainScene::triggerGameOver()
     SimpleAudioEngine::getInstance()->playEffect("sfx_die.mp3");
     
     HighScoreManager* highScoreManager = new HighScoreManager();
+    this->medalboard->displayMedalByScore(this->score, highScoreManager->getHighScore());
     highScoreManager->registerCurrentScore(this->score);
+    
     delete highScoreManager;
 }
 

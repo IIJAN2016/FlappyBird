@@ -14,11 +14,12 @@
 #include "ui/CocosGUI.h"
 
 
-class MedalBoard : public cocos2d::Node {
+class MedalBoard : public cocos2d::Layer {
 public:
     CREATE_FUNC(MedalBoard);
     bool init() override;
-    void displayMedalByScore(int score);
+    void onEnter() override;
+    void displayMedalByScore(int score, int highScore);
     void animateMedal(float dt);
     
     
@@ -28,8 +29,9 @@ protected:
     Node* effect;
     cocos2d::Vec2 makeRandPoint();
     cocos2d::ui::TextBMFont* scoreLabel;
+    cocos2d::ui::Button* playButton;
     
-    void setScore(int score);
+    void setScore(int score, int highScore);
 };
 
 #endif /* defined(__FlappyBird__Medal__) */

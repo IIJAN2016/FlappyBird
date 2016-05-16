@@ -112,6 +112,16 @@
                 <PreSize X="0.2563" Y="0.4286" />
                 <LabelBMFontFile_CNB Type="Normal" Path="Assets/font/font2.fnt" Plist="" />
               </AbstractNodeData>
+              <AbstractNodeData Name="highScore" ActionTag="1034708918" VisibleForFrame="False" Tag="9" IconVisible="False" LeftMargin="150.0000" RightMargin="27.0000" TopMargin="46.0000" BottomMargin="26.0000" LabelText="1000" ctype="TextBMFontObjectData">
+                <Size X="61.0000" Y="54.0000" />
+                <AnchorPoint ScaleX="1.0000" />
+                <Position X="211.0000" Y="26.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.8866" Y="0.2063" />
+                <PreSize X="0.2563" Y="0.4286" />
+                <LabelBMFontFile_CNB Type="Normal" Path="Assets/font/font2.fnt" Plist="" />
+              </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="1.0000" />
             <Position />
@@ -131,6 +141,47 @@
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="Normal" Path="Assets/effect/effect_twincle2.png" Plist="" />
+            <BlendFunc Src="1" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="playButton" ActionTag="2099752584" VisibleForFrame="False" Tag="98" IconVisible="False" LeftMargin="-125.0000" RightMargin="9.0000" TopMargin="146.7006" BottomMargin="-216.7006" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="86" Scale9Height="48" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="116.0000" Y="70.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="-67.0000" Y="-181.7006" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <TextColor A="255" R="65" G="65" B="70" />
+            <DisabledFileData Type="Default" Path="Default/Button_Disable.png" Plist="" />
+            <PressedFileData Type="Normal" Path="Assets/UI/btn_play.png" Plist="" />
+            <NormalFileData Type="Normal" Path="Assets/UI/btn_play.png" Plist="" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="rankButton" ActionTag="1799147502" VisibleForFrame="False" Tag="218" IconVisible="False" LeftMargin="9.0000" RightMargin="-125.0000" TopMargin="147.0154" BottomMargin="-217.0154" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="86" Scale9Height="48" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="116.0000" Y="70.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="67.0000" Y="-182.0154" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <TextColor A="255" R="65" G="65" B="70" />
+            <DisabledFileData Type="Default" Path="Default/Button_Disable.png" Plist="" />
+            <PressedFileData Type="Normal" Path="Assets/UI/leaderboard.png" Plist="" />
+            <NormalFileData Type="Normal" Path="Assets/UI/leaderboard.png" Plist="" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="new" ActionTag="-644245355" VisibleForFrame="False" Tag="478" IconVisible="False" LeftMargin="22.0000" RightMargin="-54.0000" TopMargin="60.0000" BottomMargin="-74.0000" ctype="SpriteObjectData">
+            <Size X="32.0000" Y="14.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="38.0000" Y="-67.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="Normal" Path="Assets/UI/new.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
         </Children>
