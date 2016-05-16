@@ -48,14 +48,16 @@ void MedalBoard::displayMedalByScore(int score)
         }
         this->animateMedal(0.0f);
     });
-
     
     this->runAction(
-        Sequence::create(
-                         EaseSineOut::create(MoveBy::create(0.6f, Vec2(0.0f, 316.0f))),
-                         visibleMedal,
-                         NULL
-                         )
+                    Sequence::create(
+                                     EaseSineOut::create(MoveBy::create(0.6f, Vec2(0.0f, 316.0f))),
+                                     CallFunc::create([this, score]() {
+                        this->setScore(score);
+                    }),
+                                     visibleMedal,
+                                     NULL
+                                     )
                     );
 }
 
@@ -68,14 +70,14 @@ void MedalBoard::animateMedal(float dt)
     effect->runAction(effectTimeline);
     
     auto pika = CallFunc::create([this, effectTimeline]()
-                                     {
-                                         auto vec = this->makeRandPoint();
-                                         this->effect->setPosition(vec);
-                                         effectTimeline->play("effect", false);
-                                     });
+                                 {
+                                     auto vec = this->makeRandPoint();
+                                     this->effect->setPosition(vec);
+                                     effectTimeline->play("effect", false);
+                                 });
     
     auto action =Sequence::create(pika,
-                               MoveBy::create(1.0f, Vec2(0.0f,0.0f)), NULL);
+                                  MoveBy::create(1.0f, Vec2(0.0f,0.0f)), NULL);
     this->effect->runAction(Repeat::create(action, -1));
 }
 
@@ -93,7 +95,25 @@ Vec2 MedalBoard::makeRandPoint()
     return vec;
 }
 
-
+void MedalBoard::setScore(int score)
+{
+    this->getChildByName("board")->getChildByName<cocos2d::ui::TextBMFont*>("scoreLabel")->setVisible(true);
+    Vector<FiniteTimeAction*> actions;
+    int drumCount = score;
+    //ラベルにドラムロールさせるための動作をactionsにまとめてしまう
+    for (int i = 0; i < drumCount; i++) {
+        //ラベル更新アクション
+        auto set_func = CallFunc::create([this, i]() {
+            this->getChildByName("board")->getChildByName<cocos2d::ui::TextBMFont*>("scoreLabel")->setString(std::to_string(i));
+        });
+        actions.pushBack(set_func);
+        //目に見えるように更新ごとに遅らせる
+        actions.pushBack(EaseIn::create(DelayTime::create(1.0f / (float)drumCount), 4));
+    }
+    
+    //ドラムロール開始
+    this->getChildByName("board")->getChildByName("scoreLabel")->runAction(Sequence::create(actions));
+}
 
 
 

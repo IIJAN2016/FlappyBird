@@ -11,6 +11,8 @@
 
 #include "cocos2d.h"
 #include "cocostudio/CocoStudio.h"
+#include "ui/CocosGUI.h"
+
 
 class MedalBoard : public cocos2d::Node {
 public:
@@ -25,7 +27,9 @@ protected:
     cocostudio::timeline::ActionTimeline* timeline;
     Node* effect;
     cocos2d::Vec2 makeRandPoint();
+    cocos2d::ui::TextBMFont* scoreLabel;
     
+    void setScore(int score);
 };
 
 #endif /* defined(__FlappyBird__Medal__) */
