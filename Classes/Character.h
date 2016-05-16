@@ -34,6 +34,8 @@ protected:
     float accel;
     bool isFlying;
 
+    float degreeSpeed;
+    float degree;
 };
 
 #endif /* defined(__FlappyBird__Character__) */
