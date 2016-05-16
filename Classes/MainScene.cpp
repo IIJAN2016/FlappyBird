@@ -68,10 +68,6 @@ bool MainScene::init()
     
     this->timeline = CSLoader::createTimeline("MainScene.csb");
     this->timeline->retain();
-
-    Obstacle* obstacle = dynamic_cast<Obstacle*>(CSLoader::createNode("Obstacle.csb"));
-    this->obstacles.pushBack(obstacle);
-    this->background->addChild(obstacle);
     
     // --- medal ---
     this->medalboard = dynamic_cast<MedalBoard*>(CSLoader::createNode("Medal.csb"));
